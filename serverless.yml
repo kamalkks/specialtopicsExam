@@ -33,20 +33,22 @@ provider:
         - s3:*
       Resource: "*"
 functions:
-  gold:
-    handler: diamond.gold
+  addMusic:
+    handler: diamond.addMusic
     events:
       - s3:
           bucket: bhalla3
           event: s3:ObjectCreated:*
           rules:
             - suffix: .mp3
-  silver:
-    handler: diamond.silver
+  delMusic:
+    handler: diamond.delMusic
     events:
       - s3:
           bucket: bhalla3
           event: s3:ObjectRemoved:*
+          rules:
+            - suffix: .mp3
   list:
     handler: flyt/handler.list
     events:
