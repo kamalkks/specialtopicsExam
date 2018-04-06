@@ -14,7 +14,7 @@ dynamo.delete(params, (error,result) =>{
 if(error)
 {
 	console.error(error);
-	callback(new Error("Cannot delete the recipe"));
+	callback(new Error("Unable to delete"));
 	return;
 
 }
