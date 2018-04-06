@@ -10,7 +10,7 @@ dynamo.scan(params, (error, result) =>{
 	if(error)
 	{
 		console.error(error);
-		callback(new error("Cannot find the recipe"));
+		callback(new error("No data found"));
 		return;
 	}
 	const response={
