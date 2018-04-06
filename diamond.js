@@ -3,19 +3,19 @@ const uuid = require('uuid')
 const aws= require('aws-sdk');
 const dynamo = new aws.DynamoDB.DocumentClient();
 
-module.exports.gold = (event) => {
+module.exports.addMusic = (event) => {
 
   event.Records.forEach((record) => {
     const filename = record.s3.object.key;
-    const date1 = record.eventTime;
-    const uploadDate = new Date(date1).toString();
+    const date = record.eventTime;
+    const uploadDate = new Date(date).toString();
 
         const pearls = {
 		TableName: 'emlyn2',
 		Item: {
 			id: uuid.v1(),
 			name:filename,
-			activity:'File added',
+			activity:'Music file added',
 			date:uploadDate
 		
 		}
@@ -31,7 +31,7 @@ module.exports.gold = (event) => {
   });
 
 };
-module.exports.silver= (event) => {
+module.exports.delMusic= (event) => {
 
   event.Records.forEach((record) => {
     const filename = record.s3.object.key;
@@ -43,7 +43,7 @@ module.exports.silver= (event) => {
 		Item: {
 			id: uuid.v1(),
 			name:filename,
-			activity:'File deleted',
+			activity:'Music file deleted',
 			date:deleteTime
 		
 		}
